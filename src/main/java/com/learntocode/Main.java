@@ -67,7 +67,7 @@ public class Main {
                     displayReports(cart, scanner, totalAmount);
                     break;
                 case 5:
-                    System.out.println("Thank you for shopping with us!");
+                    System.out.println("Thank you!");
                     break;
                 default:
                     System.out.println("Invalid choice!");
