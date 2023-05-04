@@ -113,10 +113,10 @@ public class Main {
         String description = scanner.nextLine();
 
 
-        Transaction transaction = new Transaction(amount, description, payment);
+        Transaction transaction = new Transaction(date, time, description, vendor, amount);
         transactions.add(transaction);
 
-        new Transaction();
+        new Transaction(date, time, description, vendor, amount);
         System.out.println("Payment saved successfully.");
     }
 
@@ -158,45 +158,35 @@ public class Main {
     }
 
     private static void displayLedger() {
-        // This method should display a table of all transactions in the `transactions` ArrayList.
-        // The table should have columns for date, time, vendor, type, and amount.
-        // The total balance of all transactions should be displayed at the bottom of the table.
+        System.out.printf("%-12s %-12s %-30s %-20s %-15s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        for (Transaction transaction : transactions) {
+            System.out.printf("%-12s %-12s %-30s %-20s %-15.2fn", transaction.getDate(),
+                transaction.getTime().format(DateTimeFormatter.ofPattern("HH:mm:ss")),
+                transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
+
+        }
     }
 
+
     private static void displayDeposits() {
-        // This method should display a table of all deposits in the `transactions` ArrayList.
-        // The table should have columns for date, time, vendor, and amount.
-        // The total amount of all deposits should be displayed at the bottom of the table.
+        System.out.println("Deposits: ");
+        System.out.printf("%-15s %-15s %-30s %-20s %-15s %n", "Date", "Time", "Description", "From", "Amount");
+
+        for (Transaction t : transactions){
+            if (t.getAmount() > 0) {
+                System.out.printf("%-15s %-15s %-30s %-20s %-15.2f %n", t.getDate(), t.getTime().format(DateTimeFormatter.ofPattern("HH:mm:ss")), t.getDescription(), t.getVendor(), t.getAmount());
+            }
+        }
     }
 
     private static void displayPayments() {
-        Scanner scanner = new Scanner(System.in);
-
-        // prompt the user for payment information
-        System.out.println("Please enter the payment information:");
-        System.out.print("Date (yyyy-mm-dd): ");
-        String date = scanner.nextLine();
-        System.out.print("Time (hh:mm:ss): ");
-        String time = scanner.nextLine();
-        System.out.print("Description: ");
-        String description = scanner.nextLine();
-        System.out.print("Vendor: ");
-        String vendor = scanner.nextLine();
-        System.out.print("Amount: ");
-        double amount = scanner.nextDouble();
-
-        // save the payment information to the csv file
-        try {
-            File file = new File("transactions.csv");
-            FileWriter writer = new FileWriter(file, true);
-            writer.write(date + "|" + time + "|" + description + "|" + vendor + "|" + (-1 * amount) + "\n");
-            writer.close();
-            System.out.println("Payment added successfully.");
-        } catch (IOException e) {
-            System.out.println("Error writing to file: " + e.getMessage());
+        System.out.format("%-15s %-15s %-30s %-20s %-15s git sta%n", "Date", "Time", "Description", "From", "Amount");
+        System.out.println("---------------------------------------------------------------");
+        for (Transaction t : transactions) {
+            if (t.getAmount() < 0) {
+                System.out.printf("%-15s %-15s %-30s %-20s %-15s %n", t.getDate(), t.getTime().format(DateTimeFormatter.ofPattern("HH:mm:ss")), t.getDescription(), t.getVendor(), t.getAmount());
+            }
         }
-
-        scanner.close();
     }
 
 
