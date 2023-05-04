@@ -9,7 +9,7 @@ public class Transaction {
     private String vendor;
     private double amount;
 
-    public Transaction(String date, LocalTime time, String description, String vendor, double amount) {
+    public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = LocalDate.parse(date);
         this.time = time;
         this.description = description;
@@ -57,5 +57,17 @@ public class Transaction {
     public void setAmount(double amount) {
         this.amount = amount;
     }
-}
 
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "date=" + date +
+                ", time=" + time +
+                ", description='" + description + '\'' +
+                ", vendor='" + vendor + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
+
+
+}
