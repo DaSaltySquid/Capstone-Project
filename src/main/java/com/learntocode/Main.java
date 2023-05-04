@@ -230,6 +230,7 @@ public class Main {
                 String input = scanner.nextLine().trim();
 
                 switch (input) {
+
                     case "1":
                         for (Transaction transaction : transactions) {
                             LocalDate date = LocalDate.now();
@@ -242,6 +243,7 @@ public class Main {
                         }
                         break;
 
+
                     case "2":
                         for (Transaction transaction : transactions) {
                             LocalDate date = LocalDate.now();
@@ -249,11 +251,10 @@ public class Main {
 
                             if (transaction.getDate().getMonth() == previousMonthDate.getMonth()) {
                                 System.out.println(transaction.getDate() + " " + transaction.getTime() + " " + transaction.getDescription() + " " + transaction.getVendor() + " " + transaction.getAmount());
-
-
                             }
                         }
                         break;
+
 
                     case "3":
 
@@ -262,8 +263,6 @@ public class Main {
 
                             if (transaction.getDate().getYear() == date.getYear()) {
                                 System.out.println(transaction.getDate() + " " + transaction.getTime() + " " + transaction.getDescription() + " " + transaction.getVendor() + " " + transaction.getAmount());
-
-
                             }
                         }
                         break;
@@ -276,8 +275,6 @@ public class Main {
 
                             if (transaction.getDate().getYear() == previousYearDate.getYear()) {
                                 System.out.println(transaction.getDate() + " " + transaction.getTime() + " " + transaction.getDescription() + " " + transaction.getVendor() + " " + transaction.getAmount());
-
-
                             }
                         }
                         break;
@@ -286,6 +283,7 @@ public class Main {
                     case "5":
                         filterTransactionsByVendor();
                         break;
+
 
                     case "0":
                         running = false;
